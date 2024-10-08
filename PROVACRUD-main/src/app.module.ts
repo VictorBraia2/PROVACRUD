@@ -1,27 +1,8 @@
-export class AppModules {}
+
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UseModule } from './use/use.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './db/entities/user.entity';
-import { Injectable } from '@nestjs/common/decorators';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '12345678',
-      database: 'crud',
-      entities: [UserEntity],
-      synchronize: true,
-    }),
-    UserModule,
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [MongooseModule.forRoot('mongodb://27017/provaCrud')],
 })
 export class AppModule {}
